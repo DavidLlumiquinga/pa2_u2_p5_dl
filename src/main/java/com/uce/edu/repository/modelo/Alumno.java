@@ -15,6 +15,7 @@ public class Alumno {
 
 	@SequenceGenerator(name = "generador", sequenceName = "alum_secuencia", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generador")
+	
 	@Column(name = "alum_id")
 	private Integer id;
 
