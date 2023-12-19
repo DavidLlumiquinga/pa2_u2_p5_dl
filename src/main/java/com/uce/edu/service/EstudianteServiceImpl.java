@@ -5,34 +5,34 @@ import org.springframework.stereotype.Service;
 
 import com.uce.edu.repository.IEstudianteRepository;
 import com.uce.edu.repository.modelo.Estudiante;
-
 @Service
-public class EstudianteServiceImpl  implements IEstudianteService{
+public class EstudianteServiceImpl implements IEstudianteService{
 
 	@Autowired
-	private IEstudianteRepository iestudianteRepository;
+	private IEstudianteRepository iEstudianteRepository;
+	
 	@Override
-	public Estudiante buscar(String id) {
+	public Estudiante buscar(Integer id) {
 		// TODO Auto-generated method stub
-		return this.iestudianteRepository.seleccionar(id);
+		return this.iEstudianteRepository.seleccionar(id);
 	}
 
 	@Override
 	public void guardar(Estudiante estudiante) {
 		// TODO Auto-generated method stub
-		this.iestudianteRepository.actualizar(estudiante);
+		this.iEstudianteRepository.insertar(estudiante);
 	}
 
 	@Override
 	public void actualizar(Estudiante estudiante) {
 		// TODO Auto-generated method stub
-		this.iestudianteRepository.actualizar(estudiante);
+		this.iEstudianteRepository.actualizar(estudiante);
 	}
 
 	@Override
-	public void eliminar(String id) {
+	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		this.iestudianteRepository.elmininar(id);
+		this.iEstudianteRepository.eliminar(id);
 	}
 
 }

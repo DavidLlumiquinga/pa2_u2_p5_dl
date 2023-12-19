@@ -5,22 +5,20 @@ import org.springframework.stereotype.Service;
 
 import com.uce.edu.repository.IAlumnoRepository;
 import com.uce.edu.repository.modelo.Alumno;
-
 @Service
-public class AlumnoServiceImpl implements IAlumnoService{
+public class AlumnoServiceImpl implements IAlumnoService {
 
-	
 	@Autowired
 	private IAlumnoRepository iAlumnoRepository;
 	
 	@Override
-	public Alumno buscar(String id) {
+	public Alumno buscar(Integer id) {
 		// TODO Auto-generated method stub
 		return this.iAlumnoRepository.seleccionar(id);
 	}
 
 	@Override
-	public void registrar(Alumno alumno) {
+	public void guardar(Alumno alumno) {
 		// TODO Auto-generated method stub
 		this.iAlumnoRepository.insertar(alumno);
 	}
@@ -32,9 +30,9 @@ public class AlumnoServiceImpl implements IAlumnoService{
 	}
 
 	@Override
-	public void eliminar(String id) {
+	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		this.iAlumnoRepository.elmininar(id);
+		this.iAlumnoRepository.eliminar(id);
 	}
 
 }

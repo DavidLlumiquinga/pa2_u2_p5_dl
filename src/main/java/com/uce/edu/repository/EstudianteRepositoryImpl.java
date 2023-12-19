@@ -7,16 +7,15 @@ import com.uce.edu.repository.modelo.Estudiante;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
-
 @Repository
 @Transactional
-public class EstudianteRepositoryImpl  implements IEstudianteRepository{
+public class EstudianteRepositoryImpl implements IEstudianteRepository{
 
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@Override
-	public Estudiante seleccionar(String id) {
+	public Estudiante seleccionar(Integer id) {
 		// TODO Auto-generated method stub
 		return this.entityManager.find(Estudiante.class, id);
 	}
@@ -30,15 +29,14 @@ public class EstudianteRepositoryImpl  implements IEstudianteRepository{
 	@Override
 	public void actualizar(Estudiante estudiante) {
 		// TODO Auto-generated method stub
-		this.entityManager.merge(estudiante); 
+		this.entityManager.merge(estudiante);
 	}
 
 	@Override
-	public void elmininar(String id) {
+	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		Estudiante estu=this.seleccionar(id);
+		Estudiante estu = this.seleccionar(id);
 		this.entityManager.remove(estu);
-	
 	}
 
 }
