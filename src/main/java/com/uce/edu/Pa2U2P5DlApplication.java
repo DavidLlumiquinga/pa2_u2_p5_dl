@@ -31,10 +31,10 @@ public class Pa2U2P5DlApplication implements CommandLineRunner{
 		// TODO Auto-generated method stub
 		
 
-//		Ciudadano cuid=new Ciudadano();
-//		cuid.setNombre("David");
-//		cuid.setApellido("Llumiquinga");
-//		this.iCiudadanoService.guardar(cuid);
+		Ciudadano cuid=new Ciudadano();
+		cuid.setNombre("David");
+		cuid.setApellido("Llumiquinga");
+		this.iCiudadanoService.guardar(cuid);
 		
 	
 //		Empleado empl=new Empleado();
@@ -50,7 +50,7 @@ public class Pa2U2P5DlApplication implements CommandLineRunner{
 		empl.setCiudadano(ciu1);
 		this.iEmpleadoService.guardar(empl);
 		
-		
+		//this.iEmpleadoService.eliminar(1);
 	}
 
 }
