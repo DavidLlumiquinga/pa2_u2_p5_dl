@@ -49,7 +49,7 @@ public class Pa2U2P5DlApplication implements CommandLineRunner{
 		empl.setSalario(new BigDecimal(2500));
 		empl.setCiudadano(ciu1);
 		this.iEmpleadoService.guardar(empl);
-		
+		System.out.println("Hola mundo");
 		
 	}
 
