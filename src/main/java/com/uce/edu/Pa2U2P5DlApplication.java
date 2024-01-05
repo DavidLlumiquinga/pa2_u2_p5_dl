@@ -57,6 +57,8 @@ public class Pa2U2P5DlApplication implements CommandLineRunner {
 		
 		hotel.setHabitaciones(habitaciones);
 		this.hotelService.guardar(hotel);
+		
+		System.out.println("feliz navidad");
 	}
 
 }
