@@ -30,23 +30,30 @@ public class Pa2U2P5DlApplication implements CommandLineRunner {
 
 		
 		Hotel hotel=new Hotel();
-		hotel.setNombre("Hilton Colon");
-		hotel.setDireccion("Av. Patria");
+		hotel.setNombre("Hotel La Basilica");
+		hotel.setDireccion("Basilica Nacional");
+		
 		
 		
 		Habitacion h1=new Habitacion();
 		h1.setClase("Economica");
-		h1.setNumero("A1");
+		h1.setNumero("1A");
 		h1.setHotel(hotel);
 		
 		Habitacion h2=new Habitacion();
-		h2.setClase("Presidencial");
-		h2.setNumero("A2");
+		h2.setClase("Premiun");
+		h2.setNumero("8B");
 		h2.setHotel(hotel);
+		
+		Habitacion h3=new Habitacion();
+		h3.setClase("Estatal");
+		h3.setNumero("10C");
+		h3.setHotel(hotel);
 		
 		List<Habitacion> habitaciones=new ArrayList<>();
 		habitaciones.add(h1);
 		habitaciones.add(h2);
+		habitaciones.add(h3);
 		
 		hotel.setHabitaciones(habitaciones);
 		this.hotelService.guardar(hotel);
