@@ -1,24 +1,23 @@
 package com.uce.edu;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Habitacion;
-import com.uce.edu.repository.modelo.Hotel;
-import com.uce.edu.service.IHotelService;
+import com.uce.edu.repository.modelo.Autor;
+import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.service.ILibroService;
 
 @SpringBootApplication
 public class Pa2U2P5DlApplication implements CommandLineRunner {
 
 	@Autowired
-	private IHotelService hotelService;
-
-	
+	private ILibroService iLibroService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5DlApplication.class, args);
@@ -28,37 +27,35 @@ public class Pa2U2P5DlApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
+		Libro libro = new Libro();
+		libro.setTitulo("Mi primer programa");
+		libro.setFechaPublicacion(LocalDateTime.now());
 		
-		Hotel hotel=new Hotel();
-		hotel.setNombre("Hotel La Basilica");
-		hotel.setDireccion("Basilica Nacional");
+
+		Autor autor = new Autor();
+		autor.setNombre("David");
+		autor.setNacionalidad("Ecuatoriano");
+		// autor.setLibros(null);
+
+		Autor autor1 = new Autor();
+		autor1.setNombre("Manuel");
+		autor1.setNacionalidad("Ecuatoriano");
+
+		Set<Autor> autores = new HashSet<Autor>();
+		autores.add(autor1);
+		autores.add(autor);
+		
+		libro.setAutores(autores);
+		
+		Set<Libro> libros=new HashSet<>();
+		libros.add(libro);
+		
+		autor1.setLibros(libros);
+		autor.setLibros(libros);
+		
+		this.iLibroService.guardar(libro);
 		
 		
-		
-		Habitacion h1=new Habitacion();
-		h1.setClase("Economica");
-		h1.setNumero("1A");
-		h1.setHotel(hotel);
-		
-		Habitacion h2=new Habitacion();
-		h2.setClase("Premiun");
-		h2.setNumero("8B");
-		h2.setHotel(hotel);
-		
-		Habitacion h3=new Habitacion();
-		h3.setClase("Estatal");
-		h3.setNumero("10C");
-		h3.setHotel(hotel);
-		
-		List<Habitacion> habitaciones=new ArrayList<>();
-		habitaciones.add(h1);
-		habitaciones.add(h2);
-		habitaciones.add(h3);
-		
-		hotel.setHabitaciones(habitaciones);
-		this.hotelService.guardar(hotel);
-		
-		System.out.println("feliz navidad");
 	}
 
 }
