@@ -28,17 +28,23 @@ public class Pa2U2P5DlApplication implements CommandLineRunner {
 		// TODO Auto-generated method stub
 
 		Libro libro = new Libro();
-		libro.setTitulo("Mi primer programa");
+		libro.setTitulo("Cien años de soledad");
 		libro.setFechaPublicacion(LocalDateTime.now());
 		
+		Libro libro1 = new Libro();
+		libro1.setTitulo("Cronica de una muerte anunciada");
+		libro1.setFechaPublicacion(LocalDateTime.now());
+		
+		Libro libro2 = new Libro();
+		libro2.setTitulo("La ciudad y los perros");
+		libro2.setFechaPublicacion(LocalDateTime.now());
 
 		Autor autor = new Autor();
-		autor.setNombre("David");
-		autor.setNacionalidad("Ecuatoriano");
-		// autor.setLibros(null);
+		autor.setNombre("Gabriel Garcia Marquez");
+		autor.setNacionalidad("Argentino");
 
 		Autor autor1 = new Autor();
-		autor1.setNombre("Manuel");
+		autor1.setNombre("Mario Vargas Llosa");
 		autor1.setNacionalidad("Ecuatoriano");
 
 		Set<Autor> autores = new HashSet<Autor>();
@@ -49,9 +55,12 @@ public class Pa2U2P5DlApplication implements CommandLineRunner {
 		
 		Set<Libro> libros=new HashSet<>();
 		libros.add(libro);
+		libros.add(libro1);
+		libros.add(libro2);
 		
 		autor1.setLibros(libros);
 		autor.setLibros(libros);
+		
 		
 		this.iLibroService.guardar(libro);
 		
