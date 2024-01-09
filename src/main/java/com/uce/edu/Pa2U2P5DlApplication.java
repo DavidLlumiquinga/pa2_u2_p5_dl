@@ -1,16 +1,18 @@
 package com.uce.edu;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Autor;
+import com.uce.edu.repository.modelo.Autor2;
+import com.uce.edu.repository.modelo.AutorLibro;
 import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.repository.modelo.Libro2;
 import com.uce.edu.service.ILibroService;
 
 @SpringBootApplication
@@ -27,35 +29,45 @@ public class Pa2U2P5DlApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		Libro libro = new Libro();
-		libro.setTitulo("Mi primer programa");
-		libro.setFechaPublicacion(LocalDateTime.now());
-		
+		Libro2 libro2 = new Libro2();
+		libro2.setTitulo("Mi primer programa");
+		libro2.setFechaPublicacion(LocalDateTime.now());
 
-		Autor autor = new Autor();
-		autor.setNombre("David");
-		autor.setNacionalidad("Ecuatoriano");
-		// autor.setLibros(null);
+		Autor2 autor2 = new Autor2();
+		autor2.setNombre("Juana Arcos");
+		autor2.setNacionalidad("Colombiana");
 
-		Autor autor1 = new Autor();
-		autor1.setNombre("Manuel");
-		autor1.setNacionalidad("Ecuatoriano");
+		Autor2 autor1 = new Autor2();
+		autor1.setNombre("Manuel Medrano");
+		autor1.setNacionalidad("Peruano");
 
-		Set<Autor> autores = new HashSet<Autor>();
+		// Ingresar los autores por una lista
+		List<Autor2> autores = new ArrayList<Autor2>();
 		autores.add(autor1);
-		autores.add(autor);
+		autores.add(autor2);
+
+		// Set de autoLibro
+		AutorLibro autorLibro = new AutorLibro();
+		autorLibro.setLibro2(libro2);
+		autorLibro.setAutor2(autor2);
+		autorLibro.setFecha(LocalDateTime.now());
+
+		AutorLibro autorLibro2 = new AutorLibro();
+		autorLibro2.setLibro2(libro2);
+		autorLibro2.setAutor2(autor1);
+		autorLibro2.setFecha(LocalDateTime.now());
 		
-		libro.setAutores(autores);
-		
-		Set<Libro> libros=new HashSet<>();
-		libros.add(libro);
-		
-		autor1.setLibros(libros);
-		autor.setLibros(libros);
-		
-		this.iLibroService.guardar(libro);
-		
-		
+		// Colocar en una lista AutorLibro
+		List<AutorLibro> lista = new ArrayList<>();
+		lista.add(autorLibro);
+		lista.add(autorLibro2);
+
+		libro2.setAutoresLibros(lista);
+
+		//this.iLibroService.guardar(libro2);
+
+		Libro libro=this.iLibroService.buscarPorNombre("Mi primer programa");
+		System.out.println(libro);
 	}
 
 }

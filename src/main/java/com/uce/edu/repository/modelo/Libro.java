@@ -29,37 +29,47 @@ public class Libro {
 	private String titulo;
 	@Column(name = "libr_fecha_publicacion")
 	private LocalDateTime fechaPublicacion;
-	
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "autor_libro",joinColumns = @JoinColumn(name="auli_id_libro"),
-	inverseJoinColumns = @JoinColumn(name="auli_id_autor"))
+	@JoinTable(name = "autor_libro", joinColumns = @JoinColumn(name = "auli_id_libro"), inverseJoinColumns = @JoinColumn(name = "auli_id_autor"))
 	private Set<Autor> autores;
-	
-	//SET y GET
+
+	// SET y GET
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getTitulo() {
 		return titulo;
 	}
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
 	public LocalDateTime getFechaPublicacion() {
 		return fechaPublicacion;
 	}
+
 	public void setFechaPublicacion(LocalDateTime fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
+
 	public Set<Autor> getAutores() {
 		return autores;
 	}
+
 	public void setAutores(Set<Autor> autores) {
 		this.autores = autores;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Libro [id=" + id + ", titulo=" + titulo + ", fechaPublicacion=" + fechaPublicacion ;
+	}
+
 }
