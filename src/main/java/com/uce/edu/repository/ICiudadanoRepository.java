@@ -9,4 +9,5 @@ public interface ICiudadanoRepository {
 	public void actualizar (Ciudadano ciudadano);
 	public void borrar(Integer id);
 	public Empleado seleccionarPorCedula(String cedula);
+	public Ciudadano seleccionarPorCedulaCiu(String cedula);
 }

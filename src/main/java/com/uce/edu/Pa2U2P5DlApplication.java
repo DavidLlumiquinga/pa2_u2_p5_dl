@@ -5,19 +5,22 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Empleado;
 import com.uce.edu.service.ICiudadanoService;
 
 @SpringBootApplication
 public class Pa2U2P5DlApplication implements CommandLineRunner {
 
-	//1. Query (Usa JPQL)
-	//1.1 TypedQuery: Conocemos el tipo de dato retornamos
-	//1.2 NamedQuery: Declarar de una manera centralizada 
-	
-	//2 Native Query
-	//3. Criteria API Query
-	
+	// 1. Query (Usa JPQL)
+	// 1.1 TypedQuery: Conocemos el tipo de dato retornamos
+	// 1.2 NamedQuery: Declarar de una manera centralizada
+
+	// 2 Native Query: Es usar SQL nativo, cuando el rendimiento prevalece ante a la
+	// POO
+	// Cuando se realiza una busqueda en SQL es muy sencilla con Hibernate
+	// 3. Criteria API Query
+
 	@Autowired
 	private ICiudadanoService iCiudadanoService;
 
@@ -29,11 +32,10 @@ public class Pa2U2P5DlApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-
-		Empleado empl= this.iCiudadanoService.buscarPorCedula("172586110");
+		Empleado empl = this.iCiudadanoService.buscarPorCedula("172586110");
 		System.out.println(empl);
-			
-		}
+
+		Ciudadano ciud = this.iCiudadanoService.buscarPorCedulaCiu("172586110");
+		System.out.println(ciud);
 	}
-
-
+}

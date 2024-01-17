@@ -67,4 +67,6 @@ public class LibroServiceImpl implements ILibroService{
 		// TODO Auto-generated method stub
 		return this.iLibroRepository.seleccionarPorFechaNamed(fecha);
 	}
+	
+	
 }

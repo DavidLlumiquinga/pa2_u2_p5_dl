@@ -7,6 +7,7 @@ import com.uce.edu.repository.modelo.Empleado;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
@@ -45,9 +46,19 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 	@Override
 	public Empleado seleccionarPorCedula(String cedula) {
 		// TODO Auto-generated method stub
-		TypedQuery<Empleado> myQuery=this.entityManager.createQuery("select e from Empleado e where e.ciudadano.cedula=:cedula",Empleado.class);
+		TypedQuery<Empleado> myQuery = this.entityManager
+				.createQuery("select e from Empleado e where e.ciudadano.cedula=:cedula", Empleado.class);
 		myQuery.setParameter("cedula", cedula);
 		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano seleccionarPorCedulaCiu(String cedula) {
+		// TODO Auto-generated method stub
+		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM ciudadano c WHERE c.ciud_cedula =: cedula ",
+				Ciudadano.class);
+		myQuery.setParameter("cedula", cedula);
+		return (Ciudadano) myQuery.getSingleResult();
 	}
 
 }

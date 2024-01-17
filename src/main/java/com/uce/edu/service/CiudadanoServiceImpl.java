@@ -37,6 +37,11 @@ public class CiudadanoServiceImpl implements ICiudadanoService {
 		// TODO Auto-generated method stub
 		return this.iCiudadanoRepositoryImpl.seleccionarPorCedula(cedula);
 	}
+	@Override
+	public Ciudadano buscarPorCedulaCiu(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepositoryImpl.seleccionarPorCedulaCiu(cedula);
+	}
 	
 	
 
