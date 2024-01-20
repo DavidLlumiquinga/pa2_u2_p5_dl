@@ -36,4 +36,16 @@ public class HotelServiceImpl implements IHotelService {
 		this.iHotelRepository.eliminar(id);
 	}
 
+	@Override
+	public Hotel buscarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iHotelRepository.seleccionarPorNombre(nombre);
+	}
+
+	@Override
+	public Hotel buscarPorDireccion(String direccion) {
+		// TODO Auto-generated method stub
+		return this.iHotelRepository.seleccionarPorDireccion(direccion);
+	}
+
 }

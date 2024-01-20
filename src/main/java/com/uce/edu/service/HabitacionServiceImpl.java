@@ -1,5 +1,8 @@
 package com.uce.edu.service;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +37,18 @@ public class HabitacionServiceImpl implements IHabitacionService {
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
 		this.iHabitacionRespository.eliminar(id);
+	}
+
+	@Override
+	public List<Habitacion> buscarPorPrecio(BigDecimal precio) {
+		// TODO Auto-generated method stub
+		return this.iHabitacionRespository.seleccionarPorPrecio(precio);
+	}
+
+	@Override
+	public List<Habitacion> buscarPorNumeroHabitacion(String numero) {
+		// TODO Auto-generated method stub
+		return this.iHabitacionRespository.seleccionarPorNumeroHabitacion(numero);
 	}
 	
 	

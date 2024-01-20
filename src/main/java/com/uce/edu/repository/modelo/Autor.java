@@ -25,37 +25,50 @@ public class Autor {
 	private String nombre;
 	@Column(name = "auto_nacionalidad")
 	private String nacionalidad;
-	
+	@Column(name = "auto_apellido")
+	private String apellido;
+
 	@ManyToMany(mappedBy = "autores", cascade = CascadeType.ALL)
 	private Set<Libro> libros;
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getNacionalidad() {
 		return nacionalidad;
 	}
+
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
+
 	public Set<Libro> getLibros() {
 		return libros;
 	}
+
 	public void setLibros(Set<Libro> libros) {
 		this.libros = libros;
 	}
-	
-	
-	
-	
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
 }

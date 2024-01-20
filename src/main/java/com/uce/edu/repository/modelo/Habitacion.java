@@ -1,5 +1,7 @@
 package com.uce.edu.repository.modelo;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,7 +27,9 @@ public class Habitacion {
 	private String numero;
 	@Column(name = "habi_clase")
 	private String clase;
-	
+	@Column(name = "habi_precio")
+	private BigDecimal precio;
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "habi_id_hotel")
 	private Hotel hotel;
@@ -61,6 +65,14 @@ public class Habitacion {
 
 	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
+	}
+
+	public BigDecimal getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(BigDecimal precio) {
+		this.precio = precio;
 	}
 
 }
