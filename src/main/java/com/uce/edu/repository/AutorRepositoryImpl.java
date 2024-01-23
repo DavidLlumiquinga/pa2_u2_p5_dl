@@ -3,11 +3,14 @@ package com.uce.edu.repository;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.repository.modelo.Autor;
-import com.uce.edu.repository.modelo.Hotel;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -37,27 +40,54 @@ public class AutorRepositoryImpl implements IAutorRespository {
 	@Override
 	public Autor seleccionarPorNombre(String nombre) {
 		// TODO Auto-generated method stub
-		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM autor a WHERE a.auto_nombre = :nombre",
-				Autor.class);
-		myQuery.setParameter("nombre", nombre);
-		return (Autor) myQuery.getSingleResult();
+		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+
+		CriteriaQuery<Autor> myCriteriaQuery = builder.createQuery(Autor.class);
+
+		Root<Autor> tablaFrom = myCriteriaQuery.from(Autor.class);
+
+		Predicate condicionNombre = builder.equal(tablaFrom.get("nombre"), nombre);
+
+		myCriteriaQuery.select(tablaFrom).where(condicionNombre);
+
+		TypedQuery<Autor> typedQuery = this.entityManager.createQuery(myCriteriaQuery);
+
+		return typedQuery.getSingleResult();
 	}
 
 	@Override
 	public Autor seleccionarPorApellido(String apellido) {
 		// TODO Auto-generated method stub
-		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM autor a WHERE a.auto_apellido = :apellido",
-				Autor.class);
-		myQuery.setParameter("apellido", apellido);
-		return (Autor) myQuery.getSingleResult();
+		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+
+		CriteriaQuery<Autor> myCriteriaQuery = builder.createQuery(Autor.class);
+
+		Root<Autor> tablaFrom = myCriteriaQuery.from(Autor.class);
+
+		Predicate condicionApellido = builder.equal(tablaFrom.get("apellido"), apellido);
+
+		myCriteriaQuery.select(tablaFrom).where(condicionApellido);
+
+		TypedQuery<Autor> typedQuery = this.entityManager.createQuery(myCriteriaQuery);
+
+		return typedQuery.getSingleResult();
 	}
 
 	@Override
 	public Autor seleccionarPorNacionalidad(String nacionalidad) {
 		// TODO Auto-generated method stub
-		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM autor a WHERE a.auto_nacionalidad = :nacionalidad",
-				Autor.class);
-		myQuery.setParameter("nacionalidad", nacionalidad);
-		return (Autor) myQuery.getSingleResult();
+		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+
+		CriteriaQuery<Autor> myCriteriaQuery = builder.createQuery(Autor.class);
+
+		Root<Autor> tablaFrom = myCriteriaQuery.from(Autor.class);
+
+		Predicate condicionNacionalidad = builder.equal(tablaFrom.get("nacionalidad"), nacionalidad);
+
+		myCriteriaQuery.select(tablaFrom).where(condicionNacionalidad);
+
+		TypedQuery<Autor> typedQuery = this.entityManager.createQuery(myCriteriaQuery);
+
+		return typedQuery.getSingleResult();
 	}
 }

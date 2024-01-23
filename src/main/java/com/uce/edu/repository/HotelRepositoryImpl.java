@@ -6,7 +6,11 @@ import com.uce.edu.repository.modelo.Hotel;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -44,20 +48,37 @@ public class HotelRepositoryImpl implements IHotelRepository {
 	@Override
 	public Hotel seleccionarPorNombre(String nombre) {
 		// TODO Auto-generated method stub
-		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM hotel h WHERE h.hote_nombre = :nombre",
-				Hotel.class);
-		myQuery.setParameter("nombre", nombre);
-		return (Hotel) myQuery.getSingleResult();
+		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
+
+		CriteriaQuery<Hotel> myCriteriaQuery = builder.createQuery(Hotel.class);
+
+		Root<Hotel> tablaFrom = myCriteriaQuery.from(Hotel.class);
+
+		Predicate condicionNombre = builder.equal(tablaFrom.get("nombre"), nombre);
+
+		myCriteriaQuery.select(tablaFrom).where(condicionNombre);
+
+		TypedQuery<Hotel> typedQuery = this.entityManager.createQuery(myCriteriaQuery);
+
+		return typedQuery.getSingleResult();
 	}
 
 	@Override
 	public Hotel seleccionarPorDireccion(String direccion) {
 		// TODO Auto-generated method stub
-		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM hotel h WHERE h.hote_direccion = :direccion",
-				Hotel.class);
-		myQuery.setParameter("direccion", direccion);
-		return (Hotel) myQuery.getSingleResult();
-	}
+		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 
+		CriteriaQuery<Hotel> myCriteriaQuery = builder.createQuery(Hotel.class);
+
+		Root<Hotel> tablaFrom = myCriteriaQuery.from(Hotel.class);
+
+		Predicate condicionDireccion = builder.equal(tablaFrom.get("direccion"), direccion);
+
+		myCriteriaQuery.select(tablaFrom).where(condicionDireccion);
+
+		TypedQuery<Hotel> typedQuery = this.entityManager.createQuery(myCriteriaQuery);
+
+		return typedQuery.getSingleResult();
+	}
 
 }

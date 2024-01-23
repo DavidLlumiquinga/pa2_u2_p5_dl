@@ -9,7 +9,8 @@ public interface IAutorRespository {
 	public void actualizar(Autor autor);
 	
 	public Autor seleccionarPorNombre(String nombre);
-
 	public Autor seleccionarPorApellido(String apellido);
 	public Autor seleccionarPorNacionalidad(String nacionalidad);
+	
+	
 }

@@ -86,7 +86,7 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 		Predicate condicionGenerica = null;
 		
 		
-		if (cedula.startsWith("")) {
+		if (cedula.startsWith("17")) {
 
 			condicionGenerica = myCriteriaBuilder.equal(myForm.get("nombre"), nombre);
 		} else if (cedula.startsWith("05")) {

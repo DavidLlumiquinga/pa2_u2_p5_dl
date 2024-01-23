@@ -5,8 +5,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Ciudadano;
-import com.uce.edu.service.ICiudadanoService;
+import com.uce.edu.repository.modelo.Autor;
+import com.uce.edu.repository.modelo.Hotel;
+import com.uce.edu.service.IAutorService;
+import com.uce.edu.service.IHotelService;
 
 @SpringBootApplication
 public class Pa2U2P5DlApplication implements CommandLineRunner {
@@ -21,7 +23,10 @@ public class Pa2U2P5DlApplication implements CommandLineRunner {
 	// 3. Criteria API Query
 
 	@Autowired
-	private ICiudadanoService iCiudadanoService;
+	private IHotelService iHotelService;
+
+	@Autowired
+	private IAutorService iAutorService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5DlApplication.class, args);
@@ -31,23 +36,30 @@ public class Pa2U2P5DlApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		Ciudadano ciu = this.iCiudadanoService.buscarPorApellido("Llumiquinga");
-		System.out.println(ciu);
+		System.out.println("HOTEL");
 
-		Ciudadano ciu1 = this.iCiudadanoService.buscarPorCriteria("David", "Llumiquinga", "1725896110");
-		System.out.println(ciu1);
+		Hotel hot1 = this.iHotelService.buscarPorNombre("Hotel La Basilica");
+		System.out.println(hot1);
 
-		Ciudadano ciu2 = this.iCiudadanoService.buscarPorCriteria("Juan", "Lopez", "0589668541");
-		System.out.println(ciu2);
+		Hotel hot2 = this.iHotelService.buscarPorDireccion("Basilica Nacional");
+		System.out.println(hot2);
 
-		System.out.println("Criteria API Query AND OR");
-		
-		Ciudadano ciu3 = this.iCiudadanoService.buscarPorCriteriaAndOr("David", "Llumiquinga2", "1725896110");
-		System.out.println(ciu3);
-		
-		Ciudadano ciu4 = this.iCiudadanoService.buscarPorCriteriaAndOr("David", "Llumiquinga2", "1725896110");
-		System.out.println(ciu4);
+		System.out.println("AUTOR");
 
-		
+		Autor aut1 = this.iAutorService.buscarPorNombre("Mario");
+		System.out.println(aut1);
+
+		Autor aut2 = this.iAutorService.buscarPorApellido("Vargas Llosa");
+		System.out.println(aut2);
+
+		Autor aut3 = this.iAutorService.buscarPorNombre("Gabriel");
+		System.out.println(aut3);
+
+		Autor aut4 = this.iAutorService.buscarPorNacionalidad("Argentino");
+		System.out.println(aut4);
+
+		Autor aut5 = this.iAutorService.buscarPorApellido("Garcia Marquez");
+		System.out.println(aut5);
+
 	}
 }
