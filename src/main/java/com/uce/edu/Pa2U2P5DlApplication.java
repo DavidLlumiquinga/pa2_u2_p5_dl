@@ -1,22 +1,12 @@
 package com.uce.edu;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Autor;
-import com.uce.edu.repository.modelo.Estudiante;
-import com.uce.edu.repository.modelo.Habitacion;
-import com.uce.edu.repository.modelo.Hotel;
-import com.uce.edu.service.IAutorService;
-import com.uce.edu.service.IEstudianteService;
-import com.uce.edu.service.IHabitacionService;
-import com.uce.edu.service.IHotelService;
+import com.uce.edu.repository.modelo.Ciudadano;
+import com.uce.edu.service.ICiudadanoService;
 
 @SpringBootApplication
 public class Pa2U2P5DlApplication implements CommandLineRunner {
@@ -31,16 +21,7 @@ public class Pa2U2P5DlApplication implements CommandLineRunner {
 	// 3. Criteria API Query
 
 	@Autowired
-	private IHabitacionService iHabitacionService;
-	
-	@Autowired
-	private IEstudianteService iEstudianteService;
-	
-	@Autowired
-	private IHotelService iHotelService;
-	
-	@Autowired
-	private IAutorService iAutorService;
+	private ICiudadanoService iCiudadanoService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5DlApplication.class, args);
@@ -50,39 +31,23 @@ public class Pa2U2P5DlApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		//TYPEDQUERY
-		List<Habitacion> hab1=this.iHabitacionService.buscarPorNumeroHabitacion("1A");
-		System.out.println(hab1);
+		Ciudadano ciu = this.iCiudadanoService.buscarPorApellido("Llumiquinga");
+		System.out.println(ciu);
+
+		Ciudadano ciu1 = this.iCiudadanoService.buscarPorCriteria("David", "Llumiquinga", "1725896110");
+		System.out.println(ciu1);
+
+		Ciudadano ciu2 = this.iCiudadanoService.buscarPorCriteria("Juan", "Lopez", "0589668541");
+		System.out.println(ciu2);
+
+		System.out.println("Criteria API Query AND OR");
 		
-		List<Habitacion> hab2=this.iHabitacionService.buscarPorPrecio(new BigDecimal(120));
-		System.out.println(hab2);
+		Ciudadano ciu3 = this.iCiudadanoService.buscarPorCriteriaAndOr("David", "Llumiquinga2", "1725896110");
+		System.out.println(ciu3);
 		
-		List<Estudiante> est1=this.iEstudianteService.buscarPorNombre("David");
-		System.out.println(est1);
-		
-		List<Estudiante> est2=this.iEstudianteService.buscarPorCedula("172586110");
-		System.out.println(est2);
-		
-		List<Estudiante> est3=this.iEstudianteService.buscarPorFechaNacimiento(LocalDateTime.of(2024, 1, 8, 13, 19));
-		System.out.println(est3);
-		
-		
-		//NATIVEQUERY
-		
-		Hotel hotel=this.iHotelService.buscarPorNombre("Hotel La Basilica");
-		System.out.println(hotel);
-		
-		Hotel hotel1=this.iHotelService.buscarPorDireccion("Basilica Nacional");
-		System.out.println(hotel1);
-		
-		Autor autor=this.iAutorService.buscarPorNombre("Mario Vargas Llosa");
-		System.out.println(autor);
-		
-		Autor autor1=this.iAutorService.buscarPorApellido("Vargas Llosa");
-		System.out.println(autor1);
-		
-		Autor autor2=this.iAutorService.buscarPorNacionalidad("Argentino");
-		System.out.println(autor2);
+		Ciudadano ciu4 = this.iCiudadanoService.buscarPorCriteriaAndOr("David", "Llumiquinga2", "1725896110");
+		System.out.println(ciu4);
+
 		
 	}
 }
